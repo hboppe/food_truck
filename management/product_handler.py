@@ -18,7 +18,7 @@ def add_product(menu: list, **product: dict):
         product_id = max(item['_id'] for item in menu) + 1
     else:
         product_id = 1
-        
+
     product['_id'] = product_id
     menu.append(product)
     return product
