@@ -14,11 +14,11 @@ def get_products_by_type(type: str):
 
 
 def add_product(menu: list, **product: dict):
-    id_default = 1
-    if len(menu) > 0:
-        for item in menu:
-            if item['_id'] > id_default:
-                id_default = item['_id'] + 1
-    product['_id'] = id_default
+    if menu:
+        product_id = max(item['_id'] for item in menu) + 1
+    else:
+        product_id = 1
+        
+    product['_id'] = product_id
     menu.append(product)
     return product
