@@ -2,17 +2,14 @@ from menu import products
 
 
 def get_product_by_id(id: int):
-    for item in products:
-        if item['_id'] == id:
-            return item
-    return {}
+    found_item = [item for item in products if item['_id'] == id]
+
+    return found_item[0] if found_item else {}
 
 
 def get_products_by_type(type: str):
-    same_type_products = []
-    for item in products:
-        if item['type'] == type:
-            same_type_products.append(item)
+    same_type_products = [item for item in products if item['type'] == type]
+
     return same_type_products
 
 
