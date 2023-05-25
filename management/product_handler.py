@@ -2,15 +2,21 @@ from menu import products
 
 
 def get_product_by_id(id: int):
-    found_item = [item for item in products if item['_id'] == id]
+    try: 
+        found_item = [item for item in products if item['_id'] == id]
 
-    return found_item[0] if found_item else {}
+        return found_item[0] if found_item else {}
+    except TypeError:
+        print('product id must be an int')
 
 
 def get_products_by_type(type: str):
-    same_type_products = [item for item in products if item['type'] == type]
+    try:
+        same_type_products = [item for item in products if item['type'] == type]
 
-    return same_type_products
+        return same_type_products
+    except TypeError:
+        print('product type must be a str')
 
 
 def add_product(menu: list, **product: dict):
