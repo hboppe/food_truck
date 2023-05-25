@@ -16,7 +16,7 @@ def get_products_by_type(type: str):
     return same_type_products
 
 
-def add_product(menu: list, **product):
+def add_product(menu: list, **product: dict):
     id_default = 1
     if len(menu) > 0:
         for item in menu:

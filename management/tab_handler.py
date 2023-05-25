@@ -1,7 +1,7 @@
 from menu import products
 
 
-def calculate_tab(products_ordered):
+def calculate_tab(products_ordered: dict):
     total_amount = 0
     for item in products_ordered:
         for item_list in products:
