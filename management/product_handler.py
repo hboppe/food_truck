@@ -1,22 +1,23 @@
 from menu import products
+from collections import Counter
 
 
 def get_product_by_id(id: int):
-    try: 
-        found_item = [item for item in products if item['_id'] == id]
+    if not type(id) is int:
+        raise TypeError('product id must be an int')
 
-        return found_item[0] if found_item else {}
-    except TypeError:
-        print('product id must be an int')
+    found_item = [item for item in products if item['_id'] == id]
+
+    return found_item[0] if found_item else {}
 
 
-def get_products_by_type(type: str):
-    try:
-        same_type_products = [item for item in products if item['type'] == type]
+def get_products_by_type(type_name: str):
+    if not type(type) is str:
+        raise TypeError('product type must be a str')
+    
+    same_type_products = [item for item in products if item['type'] == type_name]
 
-        return same_type_products
-    except TypeError:
-        print('product type must be a str')
+    return same_type_products
 
 
 def add_product(menu: list, **product: dict):
@@ -28,3 +29,13 @@ def add_product(menu: list, **product: dict):
     product['_id'] = product_id
     menu.append(product)
     return product
+
+
+def menu_report():
+    product_count = len(products)
+    total_price = sum([item['price'] for item in products])
+    average_price = round(total_price / product_count, 2)
+    types = [item['type'] for item in products]
+    most_common = Counter(types).most_common(1)
+
+    return f'Products Count: {product_count} - Average Price: ${average_price} - Most Common Type: {most_common[0][0]}'
